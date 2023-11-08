@@ -4006,6 +4006,10 @@ public class BytecodeParser extends CoreProvidersDelegate implements GraphBuilde
 
     protected void genLoadConstant(int cpi, int opcode) {
         Object con = lookupConstant(cpi, opcode, false);
+        genLoadConstantHelper(con, opcode);
+    }
+
+    protected void genLoadConstantHelper(Object con, int opcode) {
         if (con == null) {
             handleUnresolvedLoadConstant(null);
         } else if (con instanceof JavaType type) {
